@@ -15,7 +15,7 @@ namespace ManejoPresupuesto.Validaciones
 
             if (primeraLetra != primeraLetra.ToUpper())
             {
-                return new ValidationResult($"La primera letra debe ser mayúscula en el campo {validationContext.DisplayName}.");
+                return new ValidationResult($"La primera letra debe ser mayúscula.");
             }
 
             return ValidationResult.Success;
