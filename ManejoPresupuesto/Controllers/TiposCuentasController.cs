@@ -48,5 +48,20 @@ namespace ManejoPresupuesto.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> VerificarExisteTipoCuenta(string nombre)
+        {
+            var usuarioId = 1;
+
+            var yaExisteTipoCuneta = await repositorioTiposCuentas.Existe(nombre, usuarioId);
+
+            if (yaExisteTipoCuneta)
+            {
+                return Json($"El nombre {nombre} ya existe");
+            }
+
+            return Json(true);
+        }
     }
 }
