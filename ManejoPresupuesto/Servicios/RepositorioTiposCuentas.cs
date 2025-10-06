@@ -27,10 +27,7 @@ namespace ManejoPresupuesto.Servicios
         {
             using var connection = new SqlConnection(connectionString);
 
-            var id = await connection.QuerySingleAsync<int>($@"
-                INSERT INTO TiposCuentas (Nombre, UsuarioId, Orden)
-                VALUES (@Nombre, @UsuarioId, @Orden);
-                SELECT SCOPE_IDENTITY();", tipoCuenta);
+            var id = await connection.QuerySingleAsync<int>("TiposCuentas_Insertar", new { usuarioId = tipoCuenta.UsuarioId, nombre = tipoCuenta.Nombre }, commandType: System.Data.CommandType.StoredProcedure);
         }
 
         public async Task<bool> Existe(string nombre, int usuarioId)
